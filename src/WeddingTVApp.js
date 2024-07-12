@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const WeddingTVApp = () => {
     const [manName, setManName] = useState('');
@@ -9,7 +9,6 @@ const WeddingTVApp = () => {
 
     const navigate = useNavigate(); // useNavigate 훅 사용
 
-
     useEffect(() => {
         if (isWinner) {
             setShowCelebration(true);
@@ -17,33 +16,34 @@ const WeddingTVApp = () => {
                 setShowCelebration(false);
                 alert('축하합니다! 당첨되셨습니다.');
                 navigate('/CongratsPage'); // useNavigate 훅으로 페이지 이동
-            }, 2000);
+            }, 2000); // 2초로 조정
             return () => clearTimeout(timer);
         }
     }, [isWinner, navigate]);
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleLottery();
         }
     };
+
     const handleLottery = () => {
-        const checkMName = '강준모'
-        const checkWName = '신지혜'
+        const checkMName = '강준모';
+        const checkWName = '신지혜';
 
-        const exceptMName = '강운모'
-        const exceptWName = '조경진'
+        const exceptMName = '강운모';
+        const exceptWName = '조경진';
 
-        //예외처리
-        if(!manName || !womanName){
-            alert('이름을 모두 입력 바랍니다.')
-            return
+        // 예외처리
+        if (!manName || !womanName) {
+            alert('이름을 모두 입력 바랍니다.');
+            return;
         }
-
 
         if (checkMName === manName && checkWName === womanName) {
             setIsWinner(true);
-        } else  if (exceptMName === manName && exceptWName === womanName) {
-            alert('우리도 뭐 당첨??? 우리도 뭐사??ㅋㅋㅋㅋㅋㅋ')
+        } else if (exceptMName === manName && exceptWName === womanName) {
+            alert('우리도 뭐 당첨??? 우리도 뭐사??ㅋㅋㅋㅋㅋㅋ');
         } else {
             alert('아쉽게도 당첨되지 않았습니다. 다시 시도해보세요!');
         }
@@ -86,32 +86,37 @@ const WeddingTVApp = () => {
                 </div>
             )}
             <style jsx>{`
-                @keyframes confetti {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-                }
-                .confetti {
-                    position: fixed;
-                    width: 10px;
-                    height: 10px;
-                    background-color: #f0f;
-                    animation: confetti 5s ease-in-out infinite;
-                }
+              @keyframes confetti {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+              }
+              .confetti {
+                position: fixed;
+                width: 10px;
+                height: 10px;
+                background-color: #f0f;
+                animation: confetti 1s ease-in-out;
+              }
             `}</style>
             {showCelebration && (
                 <>
-                    {[...Array(50)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="confetti"
-                            style={{
-                                left: `${Math.random() * 100}vw`,
-                                top: `-5vh`,
-                                backgroundColor: `hsl(${Math.random() * 360}, 100%, 50%)`,
-                                animationDelay: `${Math.random() * 5}s`,
-                            }}
-                        />
-                    ))}
+                    {[...Array(50)].map((_, i) => {
+                        const angle = Math.random() * 60 - 30; // -30도에서 30도 사이의 각도
+                        const xOffset = Math.tan(angle * (Math.PI / 180)) * 100; // 부채꼴 효과를 위한 x 오프셋
+                        return (
+                            <div
+                                key={i}
+                                className="confetti"
+                                style={{
+                                    left: `calc(50vw + ${xOffset}px)`,
+                                    bottom: '50vh',
+                                    backgroundColor: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                                    animationDelay: `${Math.random() * 0.5}s`,
+                                    transform: `translateX(${Math.random() * 100 - 50}px) translateY(${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg)`
+                                }}
+                            />
+                        );
+                    })}
                 </>
             )}
         </div>

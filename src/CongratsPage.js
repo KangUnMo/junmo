@@ -16,10 +16,10 @@ const CongratsPage = () => {
                     <Link to="/" className="App-link"><Home style={{color: '#D3B6F8', fontSize: 40}}/></Link>
                 </header>
                 <h1 className="text-2xl font-bold text-center text-purple-800 mb-6">
-                    축하페이지 및 이미지 추가
+                   행복하게 살아!
                 </h1>
 
-                <img src={`/assets/images/img_congrats.webp`} alt="축하 이미지"/>
+                <img src={`/assets/images/img_congrats3.png`} alt="축하 이미지"/>
 
             </div>
 
