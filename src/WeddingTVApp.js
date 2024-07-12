@@ -53,7 +53,7 @@ const WeddingTVApp = () => {
         <div>
             <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
                 <h1 className="text-2xl font-bold text-center text-purple-800 mb-6">
-                    2024.07.13 이벤트
+                    2024.07.13 이벤트.
                 </h1>
                 <div className="space-y-4">
                     <input
