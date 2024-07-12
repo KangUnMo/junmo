@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import WeddingTVApp from "./WeddingTVApp";
+import CongratsPage from "./CongratsPage";
 // eslint-disable-next-line
 function Home() {
     return (
@@ -61,14 +62,17 @@ function AboutDetail() {
 
 function App() {
     return (
+        <div className="min-h-screen bg-gradient-to-b from-pink-200 to-purple-300 flex items-center justify-center p-4">
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<WeddingTVApp />} />
+                <Route path="/CongratsPage" element={<CongratsPage />} />
                 {/*<Route path="/about" element={<About />}/>*/}
                 {/*<Route path="/about/:cardId" element={<AboutDetail />} />*/}
                 {/*<Route path="/lotto" element={<WeddingTVApp />} />*/}
             </Routes>
         </BrowserRouter>
+        </div>
     );
 }
 
