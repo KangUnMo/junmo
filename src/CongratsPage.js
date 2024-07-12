@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {Home, HomeMini} from "@mui/icons-material";
+import {Home,} from "@mui/icons-material";
 
 
 const CongratsPage = () => {
